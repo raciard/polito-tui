@@ -76,7 +76,7 @@ var box;
 				else if(file.type == 'file'){
 					let url = await getDownloadURL(device, file.code)	
 
-					exec("curl   \""+ url+ "\" -L --output ~/polito-tui/tmp/" + escape(file.name) +" && xdg-open ~/polito-tui/tmp/" + escape(file.name), (err,stdout, stderr) => {//console.log(stdout)
+					exec("curl   \""+ url+ "\" -L --output ~/polito-tui/tmp/" + escape(file.name) +" && nohup xdg-open ~/polito-tui/tmp/" + escape(file.name) + " &", (err,stdout, stderr) => {//console.log(stdout)
 					})
 				}
 
@@ -159,7 +159,7 @@ console.log(box.getItem())
 // Quit on Escape, q, or Control-C.
 screen.key(['escape', 'q', 'C-c'], async function(ch, key) {
 	await device.logout();
-	exec("rm ./tmp/*");
+//	exec("rm ./tmp/*");
 	return process.exit(0);
 });
 
